@@ -1,0 +1,526 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+body, html {
+    font-family: Montserrat;
+    color: black;
+    background-image: url('../img/bg.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
+
+/* COMPONENTES */
+
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+.textoDescripcion {
+   word-wrap: break-word;
+   width: 50px;
+}
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-right: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    right: 300px;
+    width: 0;
+    height: 100%;
+    margin-right: -250px;
+    overflow-y: auto;
+    background: #ffffff;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 350px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-right: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-right: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+.tituloConcierto {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 40px;
+    letter-spacing: 0.1px;
+    color: #FF8500;
+    margin: 0px;
+}
+
+
+.tituloCrearUyE {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 40px;
+    letter-spacing: 0.1px;
+    color: #FF8500;
+    margin: 0px;
+}
+
+.crearUyE-square {
+
+	overflow: hidden;
+	min-height: 36px; /* Remember absolute positioning is outside the page flow! */
+	position: relative;
+    background-color: #7B2CBF;
+    width: 60%;
+    height: 15%;
+    left: 0%;
+    top: 15%;
+    border-radius: 0.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    margin: 10vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.textoFormulario {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-style: normal;
+    line-height: 24px;
+    color: #FFFFFF;
+    font-size: 2vh;
+}
+
+
+
+.evento-square {
+
+    overflow: hidden;
+    min-height: 36px; /* Remember absolute positioning is outside the page flow! */
+    position: relative;
+    background-color: #7B2CBF;
+    width: 80%;
+    height: 15%;
+    left: 0%;
+    top: 15%;
+    border-radius: 0.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    margin: 10vh auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+
+.titulo {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 50px;
+    letter-spacing: 0.1px;
+    color: #252B42;
+    margin: 0px;
+}
+
+.container {
+    padding: 0 60px;
+
+}
+
+.boton {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 12vh;
+    height: 5vh;
+    color: white;
+    font-weight: bold;
+    background: #FF9E00;
+    border-radius: 10px;
+}
+
+.boton-rojo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 11vh;
+    height: 4vh;
+    color: white;
+    background: red;
+    border-radius: 10px;
+}
+
+.boton-peque {
+    width: 8vh;
+    height: 3vh;
+}
+
+.filas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh 0;
+}
+
+.fila {
+    padding: 1vh;
+}
+
+.columnas {
+    display: flex;
+    justify-content: space-between;
+}
+
+.columna {
+    display: flex;
+    align-items: baseline;
+}
+
+.objeto-col {
+    padding: 0 1vh;
+}
+
+.objeto-col:first-child {
+    padding-left: 0;
+}
+
+.objeto-col:last-child {
+    padding-right: 0;
+}
+
+.ptb-3 {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LOGIN */
+.login-backround{
+    background: linear-gradient(180deg, #9D4EDD 0%, #9D4EDD 0.01%, #240046 100%);
+    min-height: 100%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-square {
+    background-color: #FFFFFF;
+    width: 414px;
+    height: 486px;
+    left: 492px;
+    top: 206px;
+    border-radius: 0.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.campo {
+    width: 76%;
+    /* h5 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.44);
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.44);
+    margin-bottom: 30px;
+    margin-left: 46px;
+    text-align: left;
+}
+
+.campoMorado {
+    width: 76%;
+    /* h5 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    background-color: rgba(123, 44, 191, 1);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.44);
+    margin-bottom: 30px;
+    margin-left: 46px;
+    text-align: left;
+}
+
+
+
+.submit {
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: #D68400;
+    border: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    font-family: Montserrat;
+    font-weight: bold;
+    margin-left: 35%;
+    font-size: 15px;
+}
+
+.forgot {
+    color: #240046;
+    font-family: Montserrat;
+    font-weight: light;
+    text-align: center;
+}
+
+
+@media (max-width: 600px) {
+    .main {
+        border-radius: 0px;
+    }
+}
+
+/* BARRA NAVEGACIÓN */
+.enlace-negro {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 24px;
+    color: black;
+    font-size: 2vh;
+}
+
+.logo {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 28px;
+    color: black;
+    font-size: 3vh;
+}
+
+/* FOOTER */
+footer {
+    background: #240046;
+    color: white;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+
+.enlace {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-style: normal;
+    line-height: 24px;
+    color: white;
+    font-size: 2vh;
+}
+
+.copyright {
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+}
+
+/* INICIO */
+
+/* SIGN IN */
+.signUp-square {
+    background-color: #FFFFFF;
+    width: 50%;
+    border-radius: 0.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    margin: 60px 0;
+}
+
+/* Lista ususarios */
+.tablaUsuarios {
+    width:100%;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+td {
+    background-color: #FF9E00;
+    padding: 5px;
+}
+th {
+    text-align: left;
+}
+
+.sinFondo{
+    background-color: transparent;
+}
+
+/* MENSAJES */
+.messages-square {
+    background-color: #FFFFFF;
+    width: 90%;
+    border-radius: 0.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.ver-chat {
+    width: 130px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: #D68400;
+    border: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    font-family: Montserrat;
+    font-weight: bold;
+    align-content: right;
+    font-size: 15px;
+}
