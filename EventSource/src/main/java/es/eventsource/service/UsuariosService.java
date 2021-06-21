@@ -41,8 +41,6 @@ public class UsuariosService {
         }
     }
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     public List<UsuariosDTO> listarClientes(String nombre, String apellidos) {
         List<Usuarios> usuarios;
 
@@ -79,39 +77,10 @@ public class UsuariosService {
 
     public UsuariosDTO findByEmailAndPassword(String email, String password) {
         Usuarios usuario = this.usuariosRepository.findByEmailAndPassword(email, password);
-        return usuario.getDTO();
-    }
-
-    public void create(String email, String nombre, String apellidos, String domicilio, String ciudad, Integer edad, Integer sexo, String password) {
-        Usuarios usuario = new Usuarios();
-
-        usuario.setNombre(nombre);
-        usuario.setApellidos(apellidos);
-        usuario.setEmail(email);
-        usuario.setDomicilio(domicilio);
-        usuario.setCiudad(ciudad);
-        usuario.setEdad(edad);
-        usuario.setSexo(sexo);
-        usuario.setPassword(password);
-        usuario.setRol(0);
-
-        this.usuariosRepository.save(usuario);
-    }
-
-    public void createAsAdmin(String email, String nombre, String apellidos, String domicilio, String ciudad, Integer edad, Integer sexo, Integer rol, String password) {
-        Usuarios usuario = new Usuarios();
-
-        usuario.setNombre(nombre);
-        usuario.setApellidos(apellidos);
-        usuario.setEmail(email);
-        usuario.setDomicilio(domicilio);
-        usuario.setCiudad(ciudad);
-        usuario.setEdad(edad);
-        usuario.setSexo(sexo);
-        usuario.setPassword(password);
-        usuario.setRol(rol);
-
-        this.usuariosRepository.save(usuario);
+        if(usuario != null)
+            return usuario.getDTO();
+        else
+            return null;
     }
 
     public void save(UsuariosDTO usuarioDTO) {

@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@page import="java.util.List"%>
 <%@ page import="es.eventsource.dto.UsuariosDTO" %>
@@ -17,20 +18,20 @@
     <body>
         <jsp:include page="navBar.jsp" />   
         <div class="container">
-            <form action="ListarUsuarios" method="POST">
+            <form:form action="/filtrarUsuarios" method="POST" modelAttribute="filtro">
                 <div class="columnas">
                     <div class="columna">
-                        <input class="campo" type="text" placeholder="Nombre" name="nombre">
-                        <input class="campo" type="text" placeholder="Apellidos" name="apellidos">
+                        <form:input class="campo" type="text" placeholder="Nombre" path="nombre"/>
+                        <form:input class="campo" type="text" placeholder="Apellidos" path="apellidos"/>
                     </div>
                     <div class="columna">
                         <input type="submit" value="Filtrar" class="boton"/>
                     </div>
                     <div class="columna">
-                        <a href="EditarAgregarUsuario" class="boton">Registrar</a>
+                        <a href="editarAgregarUsuario" class="boton">Registrar</a>
                     </div>
                 </div>
-            </form>
+            </form:form>
             <table class="tablaUsuarios">
                 <thead>
                     <tr>
@@ -67,8 +68,8 @@
                             }
                         %>
                         <td><%= u.getRol()%></td>   
-                        <td><a href="EditarAgregarUsuario?id=<%= u.getUsuarioId()%>" class="boton boton-peque">Editar</a></td>
-                        <td class="sinFondo"><a href="BorrarUsuario/<%= u.getUsuarioId()%>" class="boton-rojo boton-peque">Borrar</a></td>
+                        <td><a href="editarAgregarUsuario/<%= u.getUsuarioId()%>" class="boton boton-peque">Editar</a></td>
+                        <td class="sinFondo"><a href="borrarUsuario/<%= u.getUsuarioId()%>" class="boton-rojo boton-peque">Borrar</a></td>
                     </tr>
                     <%
                         }

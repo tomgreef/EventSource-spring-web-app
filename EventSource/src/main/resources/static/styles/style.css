@@ -6,7 +6,7 @@ body, html {
     background-image: url('../img/bg.svg');
     background-size:cover;
     background-repeat: no-repeat;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
 /* COMPONENTES */
@@ -341,6 +341,10 @@ label {
     padding: 50px;
 }
 
+.formulario {
+    align-items: center;
+}
+
 .campo {
     width: 76%;
     /* h5 */
@@ -394,7 +398,6 @@ label {
     padding-top: 7px;
     font-family: Montserrat;
     font-weight: bold;
-    margin-left: 35%;
     font-size: 15px;
 }
 
@@ -438,7 +441,7 @@ footer {
     background: #240046;
     color: white;
     position: relative;
-    bottom: 0px;
+    bottom: 0;
     width: 100%;
 }
 

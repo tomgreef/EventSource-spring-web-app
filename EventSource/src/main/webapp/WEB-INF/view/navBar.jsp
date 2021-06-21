@@ -66,7 +66,7 @@
             <a href="ListarMisEventos" class="objeto-col enlace-negro">Mis eventos</a>
         </div>
         <div class="columna">
-            <a href=/desautenticar" class="objeto-col boton">
+            <a href="/desautenticar" class="objeto-col boton">
                 Logout
             </a>
         </div>
@@ -84,8 +84,8 @@
                 <span class="logo">Eventsource</span>
             </a>
             <a href="index.jsp" class="objeto-col enlace-negro">Home</a>
-            <a href="ListarUsuarios" class="objeto-col enlace-negro">Usuarios</a>
-            <a href="ListarEventos" class="objeto-col enlace-negro">Eventos</a>
+            <a href="listarUsuarios" class="objeto-col enlace-negro">Usuarios</a>
+            <a href="listarEventos" class="objeto-col enlace-negro">Eventos</a>
         </div>
 
         <div class="columna">

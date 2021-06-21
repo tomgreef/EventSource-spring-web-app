@@ -12,8 +12,8 @@
         <title>login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles/normalize.css">
-        <link rel="stylesheet" href="styles/style.css">
+        <link rel="stylesheet" href="/styles/normalize.css">
+        <link rel="stylesheet" href="/styles/style.css">
     </head>
     <%
         String[] listaRols;
@@ -45,16 +45,16 @@
             <div class="signUp-square">
                 <h2 class="titulo logo" align="center">Eventsource</h2>
                 <form class="formulario" method="post" action="/usuarioGuardar">
-                    <input class="campo" type="text" placeholder="Nombre*" name="nombre" value="<%= nombre%>">
-                    <input class="campo" type="text" placeholder="Apellidos*" name="apellidos" value="<%= apellidos%>">
-                    <input class="campo" type="text" placeholder="Email*" name="email" value="<%= email%>">
-                    <input class="campo" type="text" placeholder="Domicilio*" name="domicilio" value="<%= domicilio%>">
-                    <input class="campo" type="text" placeholder="Ciudad*" name="ciudad" value="<%= ciudad%>">
-                    <input class="campo" type="number" placeholder="Edad*" name="edad" value="<%= edad%>">
+                    <input class="campo" type="text" placeholder="Nombre*" name="nombre" value="<%= nombre%>" required>
+                    <input class="campo" type="text" placeholder="Apellidos*" name="apellidos" value="<%= apellidos%>" required>
+                    <input class="campo" type="text" placeholder="Email*" name="email" value="<%= email%>" required>
+                    <input class="campo" type="text" placeholder="Domicilio*" name="domicilio" value="<%= domicilio%>" required>
+                    <input class="campo" type="text" placeholder="Ciudad*" name="ciudad" value="<%= ciudad%>" required>
+                    <input class="campo" type="number" placeholder="Edad*" name="edad" value="<%= edad%>" required>
                     <% if (sexo == 1) {
                     %>
                     <div class="campo">
-                        <input  type = "radio" name = "sexo" value = "0" /> Hombre
+                        <input  type = "radio" name = "sexo" value = "0"  /> Hombre
                         <input checked type = "radio" name = "sexo" value = "1" /> Mujer
                     </div>
                     <% } else {
@@ -67,7 +67,7 @@
                         }
                     %>
                   
-                    <input class="campo" type="password" placeholder="Contraseña*" name="password" value="<%= password%>">
+                    <input class="campo" type="password" placeholder="Contraseña*" name="password" value="<%= password%>" required>
                     <%
                         UsuariosDTO admin = (UsuariosDTO) session.getAttribute("usuario");
                         if (admin != null && admin.getRol() == 4) { // Es admin
@@ -90,10 +90,12 @@
                     <input hidden value="0" name="rol">
                         <% } %>
                     <input hidden value="<%= id%>" name="id">
-                    <input class="submit" type="submit" align="center" value=<%= botonSubmit%>>
+                    <div class="centrar">
+                        <input class="submit" type="submit" align="center" value=<%= botonSubmit%>>
+                    </div>
+
                 </form>
             </div>
-
         </div>
     </body>
 </html>

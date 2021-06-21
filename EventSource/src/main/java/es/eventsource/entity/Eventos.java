@@ -1,6 +1,7 @@
 package es.eventsource.entity;
 
 import com.sun.istack.NotNull;
+import es.eventsource.dto.EventosDTO;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -204,4 +205,27 @@ public class Eventos implements Serializable {
         return "entidades.Eventos[ eventoId=" + eventoId + " ]";
     }
 
+    public EventosDTO getDTO() {
+        EventosDTO dto = new EventosDTO();
+
+        dto.setTitulo(titulo);
+        dto.setAforo(eventoId);
+        dto.setCoste(coste);
+        dto.setDescripcion(descripcion);
+        dto.setEntradasMaxima(entradasMaxima);
+        dto.setEventoId(eventoId);
+        dto.setFecha(fecha);
+        dto.setFechaLimite(fechaLimite);
+        if (columnas == null)
+            dto.setColumnas(0);
+        else
+            dto.setColumnas(columnas);
+
+        if (filas == null)
+            dto.setFilas(0);
+        else
+            dto.setFilas(filas);
+
+        return dto;
+    }
 }
