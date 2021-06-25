@@ -24,7 +24,7 @@
                         <form:input class="campo" type="text" placeholder="Coste máximo" path="coste"/>
                     </div>
                     <div class="columna">
-                        <input type="submit" value="Filtrar" class="boton"/>
+                        <input type="submit" value="Filtrar" class="boton sinDecoracion" style="margin:0px"/>
                     </div>
                     <div class="columna">
                         <a href="/editarAgregarEvento" class="boton">Crear evento</a>
@@ -61,14 +61,9 @@
                         <td><%= u.getCoste()%></td>
                         <td><%= u.getAforo()%></td>
                         <td><%= u.getEntradasMaxima()%></td>
-                        <% if (u.getFilas() != 0 || u.getColumnas() != 0) {%>
                         <td><%= u.getFilas()%></td>
                         <td><%= u.getColumnas()%></td>
-                        <% } else {%>
-                        <td>0</td>
-                        <td>0</td>
-                        <% }%>
-                        <td><a href="editarAgregarEvento/<%= u.getEventoId()%>" class="boton boton-peque">Editar</a></td>
+                        <td class="sinFondo pl-3"><a href="editarAgregarEvento/<%= u.getEventoId()%>" class="boton boton-peque">Editar</a></td>
                         <td class="sinFondo"><a href="borrarEvento/<%= u.getEventoId()%>" class="boton-rojo boton-peque">Borrar</a></td>
                     </tr>
                     <%

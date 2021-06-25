@@ -2,13 +2,10 @@ package es.eventsource.service;
 
 import es.eventsource.dao.EventosRepository;
 import es.eventsource.dto.EventosDTO;
-import es.eventsource.dto.UsuariosDTO;
 import es.eventsource.entity.Eventos;
-import es.eventsource.entity.Usuarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +54,7 @@ public class EventosService {
     public void save(EventosDTO eventosDTO) {
         Eventos evento;
 
-        if(eventosDTO.getEventoId() == null) {
+        if (eventosDTO.getEventoId() == null) {
             evento = new Eventos();
         } else {
             evento = this.eventosRepository.findById(eventosDTO.getEventoId()).orElse(new Eventos());
