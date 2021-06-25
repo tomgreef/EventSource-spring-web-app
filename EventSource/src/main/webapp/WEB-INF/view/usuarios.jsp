@@ -28,7 +28,7 @@
                         <input type="submit" value="Filtrar" class="boton"/>
                     </div>
                     <div class="columna">
-                        <a href="editarAgregarUsuario" class="boton">Registrar</a>
+                        <a href="/signUp" class="boton">Registrar</a>
                     </div>
                 </div>
             </form:form>
@@ -59,16 +59,19 @@
                         <%
                             if (u.getSexo() == 0) {
                         %>
-                        <td>H</td>  
+                        <td>Hombre</td>
                         <%
                         } else {
                         %>
-                        <td>M</td>  
+                        <td>Mujer</td>
                         <%
                             }
                         %>
-                        <td><%= u.getRol()%></td>   
-                        <td><a href="editarAgregarUsuario/<%= u.getUsuarioId()%>" class="boton boton-peque">Editar</a></td>
+                        <%
+                            String [] listaRols = new String[]{"Usuario", "Creador", "Analista", "Teleoperador", "Administrador"};
+                        %>
+                        <td><%= listaRols[u.getRol()]%></td>
+                        <td class="sinFondo pl-3"><a href="editarAgregarUsuario/<%= u.getUsuarioId()%>" class="boton boton-peque">Editar</a></td>
                         <td class="sinFondo"><a href="borrarUsuario/<%= u.getUsuarioId()%>" class="boton-rojo boton-peque">Borrar</a></td>
                     </tr>
                     <%

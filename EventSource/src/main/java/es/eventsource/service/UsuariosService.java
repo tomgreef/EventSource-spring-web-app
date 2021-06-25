@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author tomvg
  */
 
@@ -77,7 +76,7 @@ public class UsuariosService {
 
     public UsuariosDTO findByEmailAndPassword(String email, String password) {
         Usuarios usuario = this.usuariosRepository.findByEmailAndPassword(email, password);
-        if(usuario != null)
+        if (usuario != null)
             return usuario.getDTO();
         else
             return null;
@@ -86,7 +85,7 @@ public class UsuariosService {
     public void save(UsuariosDTO usuarioDTO) {
         Usuarios usuario;
 
-        if(usuarioDTO.getUsuarioId() == null) {
+        if (usuarioDTO.getUsuarioId() == null) {
             usuario = new Usuarios();
         } else {
             usuario = this.usuariosRepository.findById(usuarioDTO.getUsuarioId()).orElse(new Usuarios());

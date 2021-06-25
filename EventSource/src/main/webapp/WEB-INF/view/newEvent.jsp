@@ -13,6 +13,8 @@
     </head>
     <%
         EventosDTO evento = (EventosDTO) request.getAttribute("evento");
+        String strError = (String) request.getAttribute("error");
+        if (strError == null) strError = "";
         String titulo = "" , descripcion = "";
         Integer eventoID = 0;
         Integer filas = 0;
@@ -23,7 +25,7 @@
         int entradasMaximas = 0;
         double coste = 0;
         String botonSubmit = "Crear";
-        
+
         if (evento != null){
             titulo = evento.getTitulo();
             descripcion = evento.getDescripcion();
@@ -37,16 +39,17 @@
             coste = evento.getCoste();
             botonSubmit = "Editar";
         }
-    
+
     %>
     <body>
         <jsp:include page="navBar.jsp" />
         <% if(evento == null){%>
-            <h2 class="tituloCrearUyE" align="center"> CREAR NUEVO EVENTO </h2> 
+            <h2 class="tituloCrearUyE" align="center"> CREAR NUEVO EVENTO </h2>
             <%}else {%>
             <h2 class="tituloCrearUyE" align="center"> EDITAR EVENTO </h2>
             <% } %>
         <div class="crearUyE-square">
+            <p class="centrar" style="color:red; font-weight: bold"><%= strError %><p>
             <form class="formulario" action="/eventoGuardar" method="post">
                 <input type="hidden" value="<%= eventoID%>" name="id">
                 <p class="textoFormulario" align="left"> Titulo de Evento:
@@ -75,12 +78,12 @@
                     <br><br/>
                 <p class="textoFormulario" align="left"> Descripcion del Evento:
                     <br><br/>
-                    <textarea class="campo" type="text" align="left" 
+                    <textarea class="campo" type="text" align="left"
                               rows="5" cols="45" placeholder="Descripcion" name="descripcion" required><%= descripcion%></textarea>
 
                 <input class="submit" type="submit" align="center" value=<%= botonSubmit%>>
 
             </form>
-        </div>    
+        </div>
     </body>
 </html>
