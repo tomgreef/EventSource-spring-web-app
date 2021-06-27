@@ -46,7 +46,7 @@ public class ChatsService {
         if(nombre != null && nombre.length() > 0){
             chats = this.chatsRepository.getChatsUsuarioByNombre(nombre);
         } else{
-            chats = this.chatsRepository.findAll();
+            chats = this.chatsRepository.getChatsOrdenado();
         }
         return this.convertirAListaDTO(chats);
     }
@@ -86,15 +86,14 @@ public class ChatsService {
         }
     }
 
-    public void crearChat(Integer usuarioId){
+    public Integer crearChat(Integer usuarioId){
         Chats chat = new Chats();
         Usuarios usuario = this.usuariosRepository.getById(usuarioId);
         Date date = new Date();
         chat.setFecha(date);
         chat.setUsuarioId(usuario);
-        chat.setTeleoperadorId(this.usuariosRepository.getAdmin().get(0));
-        // chat.setTeleoperadorId(null);
-        this.chatsRepository.save(chat);
+        chat.setTeleoperadorId(null);
+        return this.chatsRepository.save(chat).getChatId();
 
     }
 

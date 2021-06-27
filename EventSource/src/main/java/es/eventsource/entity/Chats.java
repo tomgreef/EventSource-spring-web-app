@@ -34,7 +34,7 @@ public class Chats implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "chats")
     private List<Mensajes> mensajesList;
     @JoinColumn(name = "TELEOPERADOR_ID", referencedColumnName = "USUARIO_ID")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Usuarios teleoperadorId;
     @JoinColumn(name = "USUARIO_ID", referencedColumnName = "USUARIO_ID")
     @ManyToOne(optional = false)

@@ -37,7 +37,6 @@ public class ChatsController {
             List<ChatsDTO> chats;
             if(usuario.getRol() == 3) {
                 chats = this.chatsService.listarChatsTeleoperador(filtro.getNombre());
-                model.addAttribute("chats", chats);
                 model.addAttribute("filtro", filtro);
             } else {
                 chats = this.chatsService.listarChatsUsuario(usuario.getUsuarioId());
@@ -96,13 +95,11 @@ public class ChatsController {
         UsuariosDTO usuario = (UsuariosDTO) session.getAttribute("usuario");
         String goTo;
         if(usuario != null) {
-            this.chatsService.crearChat(usuario.getUsuarioId());
-            //this.chatsService.crearChat();
-            goTo = "redirect:/listarChats";
+            goTo = "mostrarMensajes/"+  this.chatsService.crearChat(usuario.getUsuarioId());;
         } else {
             goTo = "index";
         }
-        return goTo;
+        return "redirect:/" + goTo;
 
     }
 }

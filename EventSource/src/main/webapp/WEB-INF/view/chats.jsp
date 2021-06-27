@@ -67,8 +67,7 @@
         %>
             <tr>
                 <%
-                    //if(chat.getTeleoperadorId()!=null ){
-                    if(chat.getTeleoperadorId().getRol()==3){ //Comprueba que el teleoperador_id de Chat es un teleoperador
+                    if(chat.getTeleoperadorId()!=null && chat.getTeleoperadorId().getRol()==3){//Comprueba que el teleoperador_id de Chat es un teleoperador
                 %>
                 <td><%=chat.getTeleoperadorId().getNombre() %></td>
                 <%
@@ -92,8 +91,7 @@
                 <td class="sinFondo"><a href="mostrarMensajes/<%= chat.getChatId()%>" class="boton-chats-mostrar"> Mostrar chat</a></td>
                 <%
                     if(usuario.getRol()== 3){
-                        //if(chat.getTeleoperadorId()!=null){
-                        if(chat.getTeleoperadorId().getRol()==3){ //Si teleoperador_id de chat es 3 sigifica que está asignado
+                        if(chat.getTeleoperadorId()!=null && chat.getTeleoperadorId().getRol()==3){ //Si teleoperador_id de chat es 3 sigifica que está asignado
                 %>
                 <td class="sinFondo"><a href="designarTeleoperador/<%= chat.getChatId()%>" class="boton-chats-desasignar"> Desasignar<br/>teleoperador</a></td>
                 <%
