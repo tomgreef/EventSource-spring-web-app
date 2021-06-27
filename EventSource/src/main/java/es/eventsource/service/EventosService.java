@@ -18,7 +18,7 @@ public class EventosService {
         this.eventosRepository = eventosRepository;
     }
 
-    protected List<EventosDTO> convertirAListaDTO(List<Eventos> lista) {
+    protected static List<EventosDTO> convertirAListaDTO(List<Eventos> lista) {
 
         if (lista != null) {
             List<EventosDTO> listaDTO = new ArrayList<>();
@@ -50,6 +50,13 @@ public class EventosService {
 
         return this.convertirAListaDTO(eventos);
     }
+
+    public List<EventosDTO> listarTodosLosEventos() {
+        List<Eventos> eventos;
+        eventos = this.eventosRepository.findAll();
+        return this.convertirAListaDTO(eventos);
+    }
+
 
     public void save(EventosDTO eventosDTO) {
         Eventos evento;
