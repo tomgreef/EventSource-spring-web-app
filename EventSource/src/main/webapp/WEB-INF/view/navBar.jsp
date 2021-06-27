@@ -61,9 +61,7 @@
                 <span class="logo">Eventsource</span>
             </a>
             <a href="/" class="objeto-col enlace-negro">Home</a>
-            <a href="ChatListar" class="objeto-col enlace-negro">Chats</a>
-            <a href="listarEventos" class="objeto-col enlace-negro">Ver eventos</a>
-            <a href="ListarMisEventos" class="objeto-col enlace-negro">Mis eventos</a>
+            <a href="/listarChats" class="objeto-col enlace-negro">Chats</a>
         </div>
         <div class="columna">
             <a href="/desautenticar" class="objeto-col boton">
@@ -75,7 +73,6 @@
 <%
         break;
     case 4: // Admin
-
 %>
 <nav>
     <div class="container columnas ptb-3 navbar">
@@ -87,7 +84,6 @@
             <a href="listarUsuarios" class="objeto-col enlace-negro">Usuarios</a>
             <a href="listarEventos" class="objeto-col enlace-negro">Eventos</a>
         </div>
-
         <div class="columna">
             <a href="/desautenticar" class="objeto-col boton">
                 Log Out
@@ -105,12 +101,10 @@
                 <span class="logo">Eventsource</span>
             </a>
             <a href="/" class="objeto-col enlace-negro">Home</a>
-            <a href="listarEventos" class="objeto-col enlace-negro">Ver eventos</a>
+            <a href="/listarEventos" class="objeto-col enlace-negro">Ver eventos</a>
             <a href="ListarMisEventos" class="objeto-col enlace-negro">Mis eventos</a>
-            <a href="ChatListar" class="objeto-col enlace-negro">Chats</a>
-            <a href="ChatCrear" class="objeto-col enlace-negro">Crear Chat</a>
+            <a href="/crearChat" class="objeto-col enlace-negro">Crear Chat</a>
         </div>
-
         <div class="columna">
             <a href="/desautenticar" class="objeto-col boton">
                 Logout

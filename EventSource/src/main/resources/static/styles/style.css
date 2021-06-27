@@ -270,6 +270,63 @@ label {
     height: 3vh;
 }
 
+/*Botones chats*/
+.boton-chats-mostrar {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 14vh;
+    height: 6vh;
+    color: white;
+    font-weight: bold;
+    background: #FF9E00;
+    border-radius: 10px;
+}
+
+.boton-chats-asignar {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 14vh;
+    height: 6vh;
+    color: white;
+    font-weight: bold;
+    background: green;
+    border-radius: 10px;
+}
+
+.boton-chats-desasignar {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 14vh;
+    height: 6vh;
+    color: white;
+    font-weight: bold;
+    background: #EED202;
+    border-radius: 10px;
+}
+
+.boton-chats-borrar {
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 14vh;
+    height: 6vh;
+    color: white;
+    font-weight: bold;
+    background: red;
+    border-radius: 10px;
+}
+
 .filas {
     display: flex;
     flex-direction: column;
@@ -393,7 +450,23 @@ label {
     text-align: left;
 }
 
-
+.campo-mensaje {
+    width: 86%;
+    /* h5 */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.44);
+    padding: 5px 0px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.44);
+    margin-left: 46px;
+    text-align: left;
+}
 
 .submit {
     cursor: pointer;
