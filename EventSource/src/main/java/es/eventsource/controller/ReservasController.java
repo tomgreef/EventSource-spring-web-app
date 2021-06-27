@@ -46,7 +46,7 @@ public class ReservasController {
     @GetMapping("/ListarMisEventos")
     public String listarMisEventos(Model model,HttpSession session) {
         UsuariosDTO usuario = (UsuariosDTO) session.getAttribute("usuario");
-        model.addAttribute("eventosConReservas",
+        model.addAttribute("eventos",
                 reservasService.getAsistedAndAsisting(usuario.getUsuarioId()));
         model.addAttribute("esPantallaDeMisEventos",true);
         return "/eventos";

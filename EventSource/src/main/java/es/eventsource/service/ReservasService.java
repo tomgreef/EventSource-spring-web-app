@@ -82,16 +82,9 @@ public class ReservasService {
 
 
 
-    public Map<Integer,EventosDTO> getAsistedAndAsisting(Integer usuarioId)
+    public List<EventosDTO> getAsistedAndAsisting(Integer usuarioId)
     {
-        return convertirAMapaDTO(reservasRepository.getAsistedAndAsisting(usuarioId));
+        return EventosService.convertirAListaDTO(reservasRepository.getAsistedAndAsisting(usuarioId));
     }
 
-    private Map<Integer,EventosDTO> convertirAMapaDTO(Map<Integer,Eventos> asistedAndAsisting) {
-        Map<Integer,EventosDTO> resultado = new HashMap<>();
-        for (Map.Entry<Integer,Eventos> entry : asistedAndAsisting.entrySet()) {
-            resultado.put(entry.getKey(),entry.getValue().getDTO());
-        }
-        return resultado;
-    }
 }

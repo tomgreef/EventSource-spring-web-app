@@ -18,7 +18,6 @@
 <%
 
     List<EventosDTO> listaEventos = (List) request.getAttribute("eventos");
-    Map<Integer,EventosDTO> eventosConReservas = (Map) request.getAttribute("eventosConReservas");
 
     UsuariosDTO usuario = (UsuariosDTO) session.getAttribute("usuario");
     ReservasDTO reservas =(ReservasDTO) request.getAttribute("reservas");
