@@ -80,11 +80,30 @@ public class ReservasService {
         }
     }
 
+    protected static List<ReservasDTO> convertirReservasAListaDTO(List<Reservas> lista) {
 
-
-    public List<EventosDTO> getAsistedAndAsisting(Integer usuarioId)
-    {
-        return EventosService.convertirAListaDTO(reservasRepository.getAsistedAndAsisting(usuarioId));
+        if (lista != null) {
+            List<ReservasDTO> listaDTO = new ArrayList<>();
+            lista.forEach((reserva) -> {
+                listaDTO.add(reserva.getDTO());
+            });
+            return listaDTO;
+        } else {
+            return null;
+        }
     }
 
+    public List<EventosDTO> getEventosAsistedAndAsisting(Integer usuarioId)
+    {
+        return EventosService.convertirAListaDTO(reservasRepository.getReservasAsistedAndAsisting(usuarioId));
+    }
+
+    public List<ReservasDTO> getReservasAsistedAndAsisting(Integer usuarioID) {
+        return convertirReservasAListaDTO(reservasRepository.getEventosAsistedAndAsisting(usuarioID));
+    }
+
+    public void delete(Integer id) {
+        Reservas reserva = this.reservasRepository.findById(id).orElse(null);
+        this.reservasRepository.delete(reserva);
+    }
 }

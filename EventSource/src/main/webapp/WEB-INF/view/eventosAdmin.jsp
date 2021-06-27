@@ -17,7 +17,7 @@
     <body>
         <jsp:include page="navBar.jsp" />   
         <div class="container">
-            <form:form action="/filtrarEventos" method="POST" modelAttribute="filtro">
+            <form:form action="filtrarEventos" method="POST" modelAttribute="filtro">
                 <div class="columnas">
                     <div class="columna">
                         <form:input class="campo" type="text" placeholder="Titulo" path="titulo"/>

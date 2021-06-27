@@ -30,7 +30,7 @@ public class EventosController {
         return doFiltarEventos(filtro, model, session);
     }
 
-    @PostMapping("filtrarEventos")
+    @PostMapping("/filtrarEventos")
     public String doFiltarEventos(@ModelAttribute("filtro") FiltroEventos filtro, Model model, HttpSession session) {
         String strTo = "/eventos";
         UsuariosDTO admin = (UsuariosDTO) session.getAttribute("usuario");

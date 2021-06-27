@@ -9,6 +9,8 @@
 <html>
 <%
     EventosDTO evento = (EventosDTO) request.getAttribute("evento");
+    Integer fila = request.getAttribute("fila")==null?0:(Integer) request.getAttribute("fila");
+    Integer columna = request.getAttribute("columna")==null?0:(Integer) request.getAttribute("columna");
 %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,7 +36,7 @@
             <% for (int i = 0; i < evento.getFilas(); i++) { %>
             <tr>
                 <% for (int j = 0; j < evento.getColumnas(); j++) {%>
-                <td><input type="checkbox" name="asientoCheckboxes" value="<%= i+1%>/<%= j+1%>"> - <%= i + 1 %> <%= j + 1%></td>
+                <td><input type="checkbox" name="asientoCheckboxes"<%if(fila-1==i && columna-1==j){%> checked <%}%> value="<%= i+1%>/<%= j+1%>"> - <%= i + 1 %> <%= j + 1%></td>
                 <% } %>
             </tr>
 

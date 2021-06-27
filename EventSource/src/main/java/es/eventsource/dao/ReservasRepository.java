@@ -12,6 +12,13 @@ import java.util.List;
 public interface ReservasRepository extends JpaRepository<Reservas, Integer> {
 
     @Query("SELECT e FROM Reservas r join Eventos e on " +
-            "r.eventoId.eventoId = e.eventoId where r.usuarioId.usuarioId = :id")
-    List<Eventos> getAsistedAndAsisting(Integer id);
+            "r.eventoId.eventoId = e.eventoId where r.usuarioId.usuarioId = :id order by r.reservaId desc ")
+    List<Eventos> getReservasAsistedAndAsisting(Integer id);
+
+
+    @Query("SELECT r FROM Reservas r join Eventos e on " +
+            "r.eventoId.eventoId = e.eventoId where r.usuarioId.usuarioId = :id order by r.reservaId desc ")
+    List<Reservas> getEventosAsistedAndAsisting(Integer id);
+
+
 }

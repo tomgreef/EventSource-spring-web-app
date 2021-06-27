@@ -18,9 +18,10 @@
 <%
 
     List<EventosDTO> listaEventos = (List) request.getAttribute("eventos");
+    List<ReservasDTO> listaReservas = (List) request.getAttribute("reservas");
 
     UsuariosDTO usuario = (UsuariosDTO) session.getAttribute("usuario");
-    ReservasDTO reservas =(ReservasDTO) request.getAttribute("reservas");
+
     boolean esPantallaDeMisEventos = false;
     if(request.getAttribute("esPantallaDeMisEventos")!=null)
     {
@@ -38,31 +39,41 @@
             </h2>
         </li>
 
-        <form action="ListarEventos" method="POST">
+        <form:form action="/filtrarEventos" method="POST" modelAttribute="filtro">
             <li>
-                <input class="campo" type="text" placeholder="Nombre del evento" name="nombre_evento">
+                <form:input class="campo" type="text" placeholder="Titulo" path="titulo"/>
             </li>
 
             <li>
                 <label>Precio máximo</label>
-                <input id="rangeInput" type="range" min="0" max="500" oninput="amount.value=rangeInput.value"name="precio_evento" />
+                <input id="rangeInput" type="range" min="0" max="500" oninput="amount.value=rangeInput.value" />
                 <br>
-                <input id="amount" type="number" value="200" min="0" max="500" oninput="rangeInput.value=amount.value"  />
+                <form:input path="coste" id="amount" type="number" value="200" min="0" max="500" oninput="rangeInput.value=amount.value"/>
             </li>
 
             <li>
                 <input type="submit" value="Filtrar" class="boton"/>
             </li>
-        </form>
+        </form:form>
 
     </ul>
 </div>
 <div class ="filas">
 
     <%
+        int indexRelacionaReservaConEvento=0;
         for (EventosDTO e : listaEventos) {
             String pattern = "dd-MM-yyyy";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+            String coste = (e.getCoste()==0)?"gratis":String.valueOf(e.getCoste());
+
+            ReservasDTO reservaDTO = null;
+            if(listaReservas!=null)
+            {
+                reservaDTO = listaReservas.get(indexRelacionaReservaConEvento);
+                indexRelacionaReservaConEvento++;
+            }
+
     %>
     <div class = fila>
         <div style="margin-right:30%" class = "evento-square">
@@ -77,6 +88,12 @@
                     <div style="color:white" class="filas container">
                         <p class="textoDescripcion"><%=e.getDescripcion()%></p>
                     </div>
+
+                    <%if(esPantallaDeMisEventos && listaReservas != null){%>
+                    <div style="color:white" class="filas container">
+                        <p class="textoDescripcion">Asiento - fila <%=reservaDTO.getAsientoFila()%>, columna <%=reservaDTO.getAsientoColumna()%>, Coste: <%=e.getCoste()%></p>
+                    </div>
+                    <%}%>
                 </div>
 
                 <div class= "filas ptb-3">
@@ -101,7 +118,7 @@
                     <div style="color:white" class="fila alinearDerecha">
                         <strong>Precio</strong>
                         <br>
-                        <%=e.getCoste()%>
+                        <%=coste%>
                     </div>
 
                     <%if(!esPantallaDeMisEventos){%>
@@ -111,8 +128,8 @@
                         else
                         {
                     %>
-                    <a href="CrearReserva/<%= e.getEventoId()%>" class="boton">Editar</a>
-                    <a href="CrearReserva/<%= e.getEventoId()%>" class="boton">Cancelar</a><br>
+                    <a href="CrearReserva/<%= reservaDTO.getReservaId()%>/<%=e.getEventoId()%>" class="boton">Editar</a>
+                    <a href="EliminarReserva/<%= reservaDTO.getReservaId()%>" class="boton">Cancelar</a><br>
                     <%
                         }
                     %>
