@@ -12,7 +12,10 @@ public interface UsuariosRepository extends JpaRepository<Usuarios, Integer> {
     public Usuarios findByEmailAndPassword(String email, String password) ;
 
     @Query("SELECT a FROM Usuarios a WHERE a.rol = 3")
-    public Usuarios getTeleoperador() ;
+    public List<Usuarios> getTeleoperador() ;
+
+    @Query("SELECT a FROM Usuarios a WHERE a.rol = 4")
+    public List<Usuarios> getAdmin() ;
 
     @Query("SELECT a FROM Usuarios a WHERE a.nombre LIKE CONCAT('%',:nombre, '%') ")
     public List<Usuarios> filterNombre(String nombre);

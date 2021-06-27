@@ -1,6 +1,7 @@
 package es.eventsource.entity;
 
 import com.sun.istack.NotNull;
+import es.eventsource.dto.MensajesDTO;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -102,4 +103,13 @@ public class Mensajes implements Serializable {
         return "entidades.Mensajes[ mensajesPK=" + mensajesPK + " ]";
     }
 
+    public MensajesDTO getDTO(){
+        MensajesDTO dto = new MensajesDTO();
+
+        dto.setMensaje(mensaje);
+        dto.setMensajesPK(mensajesPK);
+        dto.setUsuarios(usuarios.getDTO());
+
+        return dto;
+    }
 }

@@ -1,6 +1,8 @@
 package es.eventsource.entity;
 
 import com.sun.istack.NotNull;
+import es.eventsource.dto.ChatsDTO;
+
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +27,8 @@ public class Chats implements Serializable {
     @Column(name = "CHAT_ID")
     private Integer chatId;
     @Basic(optional = false)
-    @Column(name = "FECHA", nullable = false)
+    @NotNull
+    @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "chats")
@@ -113,6 +116,17 @@ public class Chats implements Serializable {
     @Override
     public String toString() {
         return "entidades.Chats[ chatId=" + chatId + " ]";
+    }
+
+    public ChatsDTO getDTO(){
+        ChatsDTO dto = new ChatsDTO();
+
+        dto.setChatId(chatId);
+        dto.setFecha(fecha);
+        if(teleoperadorId != null) dto.setTeleoperadorId(teleoperadorId.getDTO());
+        dto.setUsuarioId(usuarioId.getDTO());
+
+        return dto;
     }
 
 }

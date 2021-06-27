@@ -50,7 +50,7 @@ public class UsuariosController {
                 model.addAttribute("error", strError);
             } else { //Login correcto
                 session.setAttribute("usuario", usuario);
-                goTo = "/";
+                goTo = "/index";
 
                 // Redireccionamos por rol
                 if (usuario.getRol() == 4) // Admin
