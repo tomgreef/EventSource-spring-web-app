@@ -1,5 +1,7 @@
 package es.eventsource.entity;
 
+import es.eventsource.dto.ReservasDTO;
+
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -127,4 +129,16 @@ public class Reservas implements Serializable {
         return "entidades.Reservas[ reservaId=" + reservaId + " ]";
     }
 
+    public ReservasDTO getDTO() {
+        ReservasDTO dto = new ReservasDTO();
+
+        dto.setEventoId(eventoId.getEventoId());
+        dto.setReservaId(reservaId);
+        dto.setUsuarioId(usuarioId.getUsuarioId());
+        dto.setAsientoColumna(asientoColumna);
+        dto.setAsientoFila(asientoFila);
+
+
+        return dto;
+    }
 }

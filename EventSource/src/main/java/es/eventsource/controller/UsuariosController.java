@@ -54,7 +54,7 @@ public class UsuariosController {
 
                 // Redireccionamos por rol
                 if (usuario.getRol() == 4) // Admin
-                    goTo = "redirect:/listarEventos";
+                    goTo = "redirect:/ListarEventos";
             }
         }
         return goTo;
