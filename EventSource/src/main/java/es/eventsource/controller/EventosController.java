@@ -30,19 +30,14 @@ public class EventosController {
         return doFiltarEventos(filtro, model, session);
     }
 
-    @PostMapping("filtrarEventos")
+    @PostMapping("/filtrarEventos")
     public String doFiltarEventos(@ModelAttribute("filtro") FiltroEventos filtro, Model model, HttpSession session) {
         String strTo = "/eventos";
-        UsuariosDTO admin = (UsuariosDTO) session.getAttribute("usuario");
-
-        if (admin == null || admin.getRol() == 0 || admin.getRol() == 2 || admin.getRol() == 3) {
-            // Excluimos usuarios, analistas y teleoperadores
-            model.addAttribute("error", "Usuario sin permisos");
-            return "/login";
-        }
         List<EventosDTO> eventos = this.eventosService.listarEventos(filtro.getTitulo(), filtro.getCoste());
         model.addAttribute("eventos", eventos);
         model.addAttribute("filtro", filtro);
+
+        UsuariosDTO admin = (UsuariosDTO) session.getAttribute("usuario");
 
         if (admin.getRol() == 4) {
             strTo = "/eventosAdmin";

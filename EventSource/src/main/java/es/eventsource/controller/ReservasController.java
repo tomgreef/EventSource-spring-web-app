@@ -3,21 +3,19 @@ package es.eventsource.controller;
 import es.eventsource.dto.EventosDTO;
 import es.eventsource.dto.ReservasDTO;
 import es.eventsource.dto.UsuariosDTO;
-import es.eventsource.entity.Reservas;
 import es.eventsource.service.EventosService;
 import es.eventsource.service.ReservasService;
 import es.eventsource.vo.FiltroEventos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.http.HTTPException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ReservasController {
@@ -46,28 +44,31 @@ public class ReservasController {
     @GetMapping("/ListarMisEventos")
     public String listarMisEventos(Model model,HttpSession session) {
         UsuariosDTO usuario = (UsuariosDTO) session.getAttribute("usuario");
-        model.addAttribute("eventos",
-                reservasService.getAsistedAndAsisting(usuario.getUsuarioId()));
+        model.addAttribute("eventos", reservasService.getEventosAsistedAndAsisting(usuario.getUsuarioId()));
+        model.addAttribute("reservas",reservasService.getReservasAsistedAndAsisting(usuario.getUsuarioId()));
+        model.addAttribute("filtro",new FiltroEventos());
         model.addAttribute("esPantallaDeMisEventos",true);
         return "/eventos";
     }
 
     @PostMapping("/guardarReservaHecha")
     public String guardarReservaHecha(
-            @RequestParam("asientoCheckboxes") String[] checkBoxesAsientos,
+            @RequestParam ("asientoCheckboxes") Optional<String[]> checkBoxesAsientos,
             @RequestParam("idEvento") Integer eventoID,
             HttpSession session,Model model) {
         UsuariosDTO usuario = (UsuariosDTO) session.getAttribute("usuario");
-        ReservasDTO reservasDTO = new ReservasDTO();
-        reservasDTO.setUsuarioId(usuario.getUsuarioId());
-        reservasDTO.setEventoId(eventoID);
-        if(checkBoxesAsientos != null && checkBoxesAsientos.length > 0)
+
+        if(checkBoxesAsientos.isPresent())
         {
-            for (String checkBox : checkBoxesAsientos)
+            for (String checkBox : checkBoxesAsientos.get())
             {
                 String[] parts = checkBox.split("/");
                 String fila = parts[0];
                 String columna = parts[1];
+
+                ReservasDTO reservasDTO = new ReservasDTO();
+                reservasDTO.setUsuarioId(usuario.getUsuarioId());
+                reservasDTO.setEventoId(eventoID);
 
                 reservasDTO.setAsientoColumna(Integer.parseInt(columna));
                 reservasDTO.setAsientoFila(Integer.parseInt(fila));
@@ -76,82 +77,40 @@ public class ReservasController {
         }
         else
         {
+            ReservasDTO reservasDTO = new ReservasDTO();
+            reservasDTO.setUsuarioId(usuario.getUsuarioId());
+            reservasDTO.setEventoId(eventoID);
+
             reservasDTO.setAsientoColumna(0);
             reservasDTO.setAsientoFila(0);
-        }
 
-        this.reservasService.save(reservasDTO);
+            this.reservasService.save(reservasDTO);
+        }
 
         model.addAttribute("eventos", eventosService.listarTodosLosEventos());
         return "redirect:/ListarEventos";
     }
 
-/*
-    @GetMapping("/borrarEvento/{id}")
-    public String doBorrarEvento(@PathVariable("id") Integer id, HttpSession session, Model model) {
-        UsuariosDTO admin = (UsuariosDTO) session.getAttribute("usuario");
 
-        if (admin == null || admin.getRol() != 4) {
-            model.addAttribute("error", "Usuario sin permisos");
-            return "/login";
-        } else {
-            this.eventosService.remove(id);
-            return this.doListarEventos(model, session);
-        }
+    @GetMapping("/EliminarReserva/{id}")
+    public String doEliminarReserva(@PathVariable("id") Integer idReserva, HttpSession session,Model model) {
+        this.reservasService.delete(idReserva);
+
+        model.addAttribute("eventos", eventosService.listarTodosLosEventos());
+
+        return "redirect:/ListarEventos";
     }
 
-    @PostMapping("/eventoGuardar")
-    public String doGuardarEvento(@RequestParam("titulo") String titulo,
-                                  @RequestParam("descripcion") String descripcion,
-                                  @RequestParam("fecha") String fecha,
-                                  @RequestParam("fechaLimite") String fechaLimite,
-                                  @RequestParam("aforo") Integer aforo,
-                                  @RequestParam("filas") Integer filas,
-                                  @RequestParam("columnas") Integer columnas,
-                                  @RequestParam("entradasMaximas") Integer entradasMaximas,
-                                  @RequestParam("coste") Double coste,
-                                  @RequestParam("id") Integer id,
-                                  HttpSession session, Model model) throws ParseException {
-        String strTo = "/";
-        UsuariosDTO admin = (UsuariosDTO) session.getAttribute("usuario");
+    //editar
+    @GetMapping("/CrearReserva/{idReserva}/{idEvento}")
+    public String doEditarReserva(@PathVariable("idReserva") Integer idReserva, @PathVariable("idEvento") Integer idEvento, HttpSession session,Model model) {
+        ReservasDTO reserva = this.reservasService.find(idReserva);
 
-        if (admin == null || admin.getRol() == 0 || admin.getRol() == 2 || admin.getRol() == 3) {
-            // Excluimos usuarios, analistas y teleoperadores
-            model.addAttribute("error", "Usuario sin permisos");
-            return "/login";
-        }
-        Date dateFecha = new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
-        Date dateFechaLimite = new SimpleDateFormat("yyyy-MM-dd").parse(fechaLimite);
-        EventosDTO evento = new EventosDTO();
+        model.addAttribute("columna",reserva.getAsientoColumna());
+        model.addAttribute("fila",reserva.getAsientoFila());
 
-        if (id != 0)
-            evento.setEventoId(id);
-        evento.setTitulo(titulo);
-        evento.setDescripcion(descripcion);
-        evento.setFecha(dateFecha);
-        evento.setFechaLimite(dateFechaLimite);
-        evento.setAforo(aforo);
-        evento.setFilas(filas);
-        evento.setColumnas(columnas);
-        evento.setEntradasMaxima(entradasMaximas);
-        evento.setCoste(coste);
+        model.addAttribute("evento", eventosService.find(reserva.getEventoId()));
 
-        // Comprobamos validez del evento //
-        // Reserva tiene que ser anterior al avento
-        if (dateFecha.before(dateFechaLimite)) {
-            evento.setEventoId(0);
-            model.addAttribute("evento", evento);
-            model.addAttribute("error", "La fecha limite para reservas tiene que ser anterior a la fecha del evento");
-            return "/newEvent";
-        }
-
-        this.eventosService.save(evento);
-
-        if (admin.getRol() == 4) {
-            strTo = "/ListarEventos";
-        }
-
-        return "redirect:" + strTo;
+        return "crearLaReserva";
     }
-*/
 }

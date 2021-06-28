@@ -75,9 +75,9 @@ public class UsuariosService {
     }
 
     public UsuariosDTO findByEmailAndPassword(String email, String password) {
-        Usuarios usuario = this.usuariosRepository.findByEmailAndPassword(email, password);
-        if (usuario != null)
-            return usuario.getDTO();
+        List<Usuarios> usuarios = this.usuariosRepository.findByEmailAndPassword(email, password);
+        if (usuarios != null && !usuarios.isEmpty())
+            return usuarios.get(0).getDTO();
         else
             return null;
     }
